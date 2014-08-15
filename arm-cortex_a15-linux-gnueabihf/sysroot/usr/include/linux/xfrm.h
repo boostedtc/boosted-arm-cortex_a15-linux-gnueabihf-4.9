@@ -84,6 +84,18 @@ struct xfrm_replay_state {
 	__u32	bitmap;
 };
 
+#define XFRMA_REPLAY_ESN_MAX	4096
+
+struct xfrm_replay_state_esn {
+	unsigned int	bmp_len;
+	__u32		oseq;
+	__u32		seq;
+	__u32		oseq_hi;
+	__u32		seq_hi;
+	__u32		replay_window;
+	__u32		bmp[0];
+};
+
 struct xfrm_algo {
 	char		alg_name[64];
 	unsigned int	alg_key_len;    /* in bits */
@@ -284,6 +296,8 @@ enum xfrm_attr_type_t {
 	XFRMA_ALG_AUTH_TRUNC,	/* struct xfrm_algo_auth */
 	XFRMA_MARK,		/* struct xfrm_mark */
 	XFRMA_TFCPAD,		/* __u32 */
+	XFRMA_REPLAY_ESN_VAL,	/* struct xfrm_replay_esn */
+	XFRMA_SA_EXTRA_FLAGS,	/* __u32 */
 	__XFRMA_MAX
 
 #define XFRMA_MAX (__XFRMA_MAX - 1)
@@ -350,7 +364,11 @@ struct xfrm_usersa_info {
 #define XFRM_STATE_WILDRECV	8
 #define XFRM_STATE_ICMP		16
 #define XFRM_STATE_AF_UNSPEC	32
+#define XFRM_STATE_ALIGN4	64
+#define XFRM_STATE_ESN		128
 };
+
+#define XFRM_SA_XFLAG_DONT_ENCAP_DSCP	1
 
 struct xfrm_usersa_id {
 	xfrm_address_t			daddr;

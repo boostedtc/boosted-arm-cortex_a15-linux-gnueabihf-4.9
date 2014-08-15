@@ -5,8 +5,14 @@
  *
  * Copyright (c) 2009 Wolfgang Grandegger <wg@grandegger.com>
  *
- * Send feedback to <socketcan-users@lists.berlios.de>
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the version 2 of the GNU General Public License
+ * as published by the Free Software Foundation
  *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
  */
 
 #ifndef CAN_NETLINK_H
@@ -17,7 +23,7 @@
 /*
  * CAN bit-timing parameters
  *
- * For futher information, please read chapter "8 BIT TIMING
+ * For further information, please read chapter "8 BIT TIMING
  * REQUIREMENTS" of the "Bosch CAN Specification version 2.0"
  * at http://www.semiconductors.bosch.de/pdf/can2spec.pdf.
  */

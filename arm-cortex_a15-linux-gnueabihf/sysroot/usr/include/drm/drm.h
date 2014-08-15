@@ -36,7 +36,7 @@
 #ifndef _DRM_H_
 #define _DRM_H_
 
-#if defined(__linux__)
+#if defined(__KERNEL__) || defined(__linux__)
 
 #include <linux/types.h>
 #include <asm/ioctl.h>
@@ -181,7 +181,7 @@ enum drm_map_type {
 	_DRM_AGP = 3,		  /**< AGP/GART */
 	_DRM_SCATTER_GATHER = 4,  /**< Scatter/gather memory for PCI DMA */
 	_DRM_CONSISTENT = 5,	  /**< Consistent memory for PCI DMA */
-	_DRM_GEM = 6,		  /**< GEM object */
+	_DRM_GEM = 6,		  /**< GEM object (obsolete) */
 };
 
 /**
@@ -463,12 +463,15 @@ struct drm_irq_busid {
 enum drm_vblank_seq_type {
 	_DRM_VBLANK_ABSOLUTE = 0x0,	/**< Wait for specific vblank sequence number */
 	_DRM_VBLANK_RELATIVE = 0x1,	/**< Wait for given number of vblanks */
+	/* bits 1-6 are reserved for high crtcs */
+	_DRM_VBLANK_HIGH_CRTC_MASK = 0x0000003e,
 	_DRM_VBLANK_EVENT = 0x4000000,   /**< Send event instead of blocking */
 	_DRM_VBLANK_FLIP = 0x8000000,   /**< Scheduled buffer swap should flip */
 	_DRM_VBLANK_NEXTONMISS = 0x10000000,	/**< If missed, wait for next vblank */
 	_DRM_VBLANK_SECONDARY = 0x20000000,	/**< Secondary display controller */
 	_DRM_VBLANK_SIGNAL = 0x40000000	/**< Send signal instead of blocking, unsupported */
 };
+#define _DRM_VBLANK_HIGH_CRTC_SHIFT 1
 
 #define _DRM_VBLANK_TYPES_MASK (_DRM_VBLANK_ABSOLUTE | _DRM_VBLANK_RELATIVE)
 #define _DRM_VBLANK_FLAGS_MASK (_DRM_VBLANK_EVENT | _DRM_VBLANK_SIGNAL | \
@@ -608,7 +611,49 @@ struct drm_gem_open {
 	__u64 size;
 };
 
-#include "drm_mode.h"
+#define DRM_CAP_DUMB_BUFFER		0x1
+#define DRM_CAP_VBLANK_HIGH_CRTC	0x2
+#define DRM_CAP_DUMB_PREFERRED_DEPTH	0x3
+#define DRM_CAP_DUMB_PREFER_SHADOW	0x4
+#define DRM_CAP_PRIME			0x5
+#define  DRM_PRIME_CAP_IMPORT		0x1
+#define  DRM_PRIME_CAP_EXPORT		0x2
+#define DRM_CAP_TIMESTAMP_MONOTONIC	0x6
+#define DRM_CAP_ASYNC_PAGE_FLIP		0x7
+
+/** DRM_IOCTL_GET_CAP ioctl argument type */
+struct drm_get_cap {
+	__u64 capability;
+	__u64 value;
+};
+
+/**
+ * DRM_CLIENT_CAP_STEREO_3D
+ *
+ * if set to 1, the DRM core will expose the stereo 3D capabilities of the
+ * monitor by advertising the supported 3D layouts in the flags of struct
+ * drm_mode_modeinfo.
+ */
+#define DRM_CLIENT_CAP_STEREO_3D	1
+
+/** DRM_IOCTL_SET_CLIENT_CAP ioctl argument type */
+struct drm_set_client_cap {
+	__u64 capability;
+	__u64 value;
+};
+
+#define DRM_CLOEXEC O_CLOEXEC
+struct drm_prime_handle {
+	__u32 handle;
+
+	/** Flags.. only applicable for handle->fd */
+	__u32 flags;
+
+	/** Returned dmabuf file descriptor */
+	__s32 fd;
+};
+
+#include <drm/drm_mode.h>
 
 #define DRM_IOCTL_BASE			'd'
 #define DRM_IO(nr)			_IO(DRM_IOCTL_BASE,nr)
@@ -628,6 +673,8 @@ struct drm_gem_open {
 #define DRM_IOCTL_GEM_CLOSE		DRM_IOW (0x09, struct drm_gem_close)
 #define DRM_IOCTL_GEM_FLINK		DRM_IOWR(0x0a, struct drm_gem_flink)
 #define DRM_IOCTL_GEM_OPEN		DRM_IOWR(0x0b, struct drm_gem_open)
+#define DRM_IOCTL_GET_CAP		DRM_IOWR(0x0c, struct drm_get_cap)
+#define DRM_IOCTL_SET_CLIENT_CAP	DRM_IOW( 0x0d, struct drm_set_client_cap)
 
 #define DRM_IOCTL_SET_UNIQUE		DRM_IOW( 0x10, struct drm_unique)
 #define DRM_IOCTL_AUTH_MAGIC		DRM_IOW( 0x11, struct drm_auth)
@@ -663,7 +710,8 @@ struct drm_gem_open {
 #define DRM_IOCTL_UNLOCK		DRM_IOW( 0x2b, struct drm_lock)
 #define DRM_IOCTL_FINISH		DRM_IOW( 0x2c, struct drm_lock)
 
-#define DRM_IOCTL_GEM_PRIME_OPEN        DRM_IOWR(0x2e, struct drm_gem_open)
+#define DRM_IOCTL_PRIME_HANDLE_TO_FD    DRM_IOWR(0x2d, struct drm_prime_handle)
+#define DRM_IOCTL_PRIME_FD_TO_HANDLE    DRM_IOWR(0x2e, struct drm_prime_handle)
 
 #define DRM_IOCTL_AGP_ACQUIRE		DRM_IO(  0x30)
 #define DRM_IOCTL_AGP_RELEASE		DRM_IO(  0x31)
@@ -689,8 +737,8 @@ struct drm_gem_open {
 #define DRM_IOCTL_MODE_SETGAMMA		DRM_IOWR(0xA5, struct drm_mode_crtc_lut)
 #define DRM_IOCTL_MODE_GETENCODER	DRM_IOWR(0xA6, struct drm_mode_get_encoder)
 #define DRM_IOCTL_MODE_GETCONNECTOR	DRM_IOWR(0xA7, struct drm_mode_get_connector)
-#define DRM_IOCTL_MODE_ATTACHMODE	DRM_IOWR(0xA8, struct drm_mode_mode_cmd)
-#define DRM_IOCTL_MODE_DETACHMODE	DRM_IOWR(0xA9, struct drm_mode_mode_cmd)
+#define DRM_IOCTL_MODE_ATTACHMODE	DRM_IOWR(0xA8, struct drm_mode_mode_cmd) /* deprecated (never worked) */
+#define DRM_IOCTL_MODE_DETACHMODE	DRM_IOWR(0xA9, struct drm_mode_mode_cmd) /* deprecated (never worked) */
 
 #define DRM_IOCTL_MODE_GETPROPERTY	DRM_IOWR(0xAA, struct drm_mode_get_property)
 #define DRM_IOCTL_MODE_SETPROPERTY	DRM_IOWR(0xAB, struct drm_mode_connector_set_property)
@@ -700,6 +748,17 @@ struct drm_gem_open {
 #define DRM_IOCTL_MODE_RMFB		DRM_IOWR(0xAF, unsigned int)
 #define DRM_IOCTL_MODE_PAGE_FLIP	DRM_IOWR(0xB0, struct drm_mode_crtc_page_flip)
 #define DRM_IOCTL_MODE_DIRTYFB		DRM_IOWR(0xB1, struct drm_mode_fb_dirty_cmd)
+
+#define DRM_IOCTL_MODE_CREATE_DUMB DRM_IOWR(0xB2, struct drm_mode_create_dumb)
+#define DRM_IOCTL_MODE_MAP_DUMB    DRM_IOWR(0xB3, struct drm_mode_map_dumb)
+#define DRM_IOCTL_MODE_DESTROY_DUMB    DRM_IOWR(0xB4, struct drm_mode_destroy_dumb)
+#define DRM_IOCTL_MODE_GETPLANERESOURCES DRM_IOWR(0xB5, struct drm_mode_get_plane_res)
+#define DRM_IOCTL_MODE_GETPLANE	DRM_IOWR(0xB6, struct drm_mode_get_plane)
+#define DRM_IOCTL_MODE_SETPLANE	DRM_IOWR(0xB7, struct drm_mode_set_plane)
+#define DRM_IOCTL_MODE_ADDFB2		DRM_IOWR(0xB8, struct drm_mode_fb_cmd2)
+#define DRM_IOCTL_MODE_OBJ_GETPROPERTIES	DRM_IOWR(0xB9, struct drm_mode_obj_get_properties)
+#define DRM_IOCTL_MODE_OBJ_SETPROPERTY	DRM_IOWR(0xBA, struct drm_mode_obj_set_property)
+#define DRM_IOCTL_MODE_CURSOR2		DRM_IOWR(0xBB, struct drm_mode_cursor2)
 
 /**
  * Device specific ioctls should only be in their respective headers

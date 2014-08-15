@@ -29,6 +29,7 @@
 #define SYS_chown __NR_chown
 #define SYS_chown32 __NR_chown32
 #define SYS_chroot __NR_chroot
+#define SYS_clock_adjtime __NR_clock_adjtime
 #define SYS_clock_getres __NR_clock_getres
 #define SYS_clock_gettime __NR_clock_gettime
 #define SYS_clock_nanosleep __NR_clock_nanosleep
@@ -65,6 +66,7 @@
 #define SYS_fcntl64 __NR_fcntl64
 #define SYS_fdatasync __NR_fdatasync
 #define SYS_fgetxattr __NR_fgetxattr
+#define SYS_finit_module __NR_finit_module
 #define SYS_flistxattr __NR_flistxattr
 #define SYS_flock __NR_flock
 #define SYS_fork __NR_fork
@@ -127,6 +129,7 @@
 #define SYS_ioctl __NR_ioctl
 #define SYS_ioprio_get __NR_ioprio_get
 #define SYS_ioprio_set __NR_ioprio_set
+#define SYS_kcmp __NR_kcmp
 #define SYS_kexec_load __NR_kexec_load
 #define SYS_keyctl __NR_keyctl
 #define SYS_kill __NR_kill
@@ -172,10 +175,12 @@
 #define SYS_munlock __NR_munlock
 #define SYS_munlockall __NR_munlockall
 #define SYS_munmap __NR_munmap
+#define SYS_name_to_handle_at __NR_name_to_handle_at
 #define SYS_nanosleep __NR_nanosleep
 #define SYS_nfsservctl __NR_nfsservctl
 #define SYS_nice __NR_nice
 #define SYS_open __NR_open
+#define SYS_open_by_handle_at __NR_open_by_handle_at
 #define SYS_openat __NR_openat
 #define SYS_pause __NR_pause
 #define SYS_pciconfig_iobase __NR_pciconfig_iobase
@@ -192,6 +197,8 @@
 #define SYS_pread64 __NR_pread64
 #define SYS_preadv __NR_preadv
 #define SYS_prlimit64 __NR_prlimit64
+#define SYS_process_vm_readv __NR_process_vm_readv
+#define SYS_process_vm_writev __NR_process_vm_writev
 #define SYS_pselect6 __NR_pselect6
 #define SYS_ptrace __NR_ptrace
 #define SYS_pwrite64 __NR_pwrite64
@@ -239,6 +246,7 @@
 #define SYS_send __NR_send
 #define SYS_sendfile __NR_sendfile
 #define SYS_sendfile64 __NR_sendfile64
+#define SYS_sendmmsg __NR_sendmmsg
 #define SYS_sendmsg __NR_sendmsg
 #define SYS_sendto __NR_sendto
 #define SYS_set_mempolicy __NR_set_mempolicy
@@ -255,6 +263,7 @@
 #define SYS_setgroups32 __NR_setgroups32
 #define SYS_sethostname __NR_sethostname
 #define SYS_setitimer __NR_setitimer
+#define SYS_setns __NR_setns
 #define SYS_setpgid __NR_setpgid
 #define SYS_setpriority __NR_setpriority
 #define SYS_setregid __NR_setregid
@@ -298,6 +307,7 @@
 #define SYS_symlinkat __NR_symlinkat
 #define SYS_sync __NR_sync
 #define SYS_sync_file_range2 __NR_sync_file_range2
+#define SYS_syncfs __NR_syncfs
 #define SYS_sysfs __NR_sysfs
 #define SYS_sysinfo __NR_sysinfo
 #define SYS_syslog __NR_syslog
@@ -359,6 +369,7 @@
 #define SYS_chown __NR_chown
 #define SYS_chown32 __NR_chown32
 #define SYS_chroot __NR_chroot
+#define SYS_clock_adjtime __NR_clock_adjtime
 #define SYS_clock_getres __NR_clock_getres
 #define SYS_clock_gettime __NR_clock_gettime
 #define SYS_clock_nanosleep __NR_clock_nanosleep
@@ -395,6 +406,7 @@
 #define SYS_fcntl64 __NR_fcntl64
 #define SYS_fdatasync __NR_fdatasync
 #define SYS_fgetxattr __NR_fgetxattr
+#define SYS_finit_module __NR_finit_module
 #define SYS_flistxattr __NR_flistxattr
 #define SYS_flock __NR_flock
 #define SYS_fork __NR_fork
@@ -457,6 +469,7 @@
 #define SYS_ioctl __NR_ioctl
 #define SYS_ioprio_get __NR_ioprio_get
 #define SYS_ioprio_set __NR_ioprio_set
+#define SYS_kcmp __NR_kcmp
 #define SYS_kexec_load __NR_kexec_load
 #define SYS_keyctl __NR_keyctl
 #define SYS_kill __NR_kill
@@ -502,10 +515,12 @@
 #define SYS_munlock __NR_munlock
 #define SYS_munlockall __NR_munlockall
 #define SYS_munmap __NR_munmap
+#define SYS_name_to_handle_at __NR_name_to_handle_at
 #define SYS_nanosleep __NR_nanosleep
 #define SYS_nfsservctl __NR_nfsservctl
 #define SYS_nice __NR_nice
 #define SYS_open __NR_open
+#define SYS_open_by_handle_at __NR_open_by_handle_at
 #define SYS_openat __NR_openat
 #define SYS_pause __NR_pause
 #define SYS_pciconfig_iobase __NR_pciconfig_iobase
@@ -522,6 +537,8 @@
 #define SYS_pread64 __NR_pread64
 #define SYS_preadv __NR_preadv
 #define SYS_prlimit64 __NR_prlimit64
+#define SYS_process_vm_readv __NR_process_vm_readv
+#define SYS_process_vm_writev __NR_process_vm_writev
 #define SYS_pselect6 __NR_pselect6
 #define SYS_ptrace __NR_ptrace
 #define SYS_pwrite64 __NR_pwrite64
@@ -569,6 +586,7 @@
 #define SYS_send __NR_send
 #define SYS_sendfile __NR_sendfile
 #define SYS_sendfile64 __NR_sendfile64
+#define SYS_sendmmsg __NR_sendmmsg
 #define SYS_sendmsg __NR_sendmsg
 #define SYS_sendto __NR_sendto
 #define SYS_set_mempolicy __NR_set_mempolicy
@@ -585,6 +603,7 @@
 #define SYS_setgroups32 __NR_setgroups32
 #define SYS_sethostname __NR_sethostname
 #define SYS_setitimer __NR_setitimer
+#define SYS_setns __NR_setns
 #define SYS_setpgid __NR_setpgid
 #define SYS_setpriority __NR_setpriority
 #define SYS_setregid __NR_setregid
@@ -628,6 +647,7 @@
 #define SYS_symlinkat __NR_symlinkat
 #define SYS_sync __NR_sync
 #define SYS_sync_file_range2 __NR_sync_file_range2
+#define SYS_syncfs __NR_syncfs
 #define SYS_sysfs __NR_sysfs
 #define SYS_sysinfo __NR_sysinfo
 #define SYS_syslog __NR_syslog

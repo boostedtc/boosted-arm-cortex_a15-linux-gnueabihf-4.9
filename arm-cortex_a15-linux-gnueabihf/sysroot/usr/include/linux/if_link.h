@@ -135,6 +135,15 @@ enum {
 	IFLA_VF_PORTS,
 	IFLA_PORT_SELF,
 	IFLA_AF_SPEC,
+	IFLA_GROUP,		/* Group the device belongs to */
+	IFLA_NET_NS_FD,
+	IFLA_EXT_MASK,		/* Extended info mask, VFs, etc */
+	IFLA_PROMISCUITY,	/* Promiscuity count: > 0 means acts PROMISC */
+#define IFLA_PROMISCUITY IFLA_PROMISCUITY
+	IFLA_NUM_TX_QUEUES,
+	IFLA_NUM_RX_QUEUES,
+	IFLA_CARRIER,
+	IFLA_PHYS_PORT_ID,
 	__IFLA_MAX
 };
 
@@ -191,10 +200,31 @@ enum {
 	IFLA_INET6_MCAST,	/* MC things. What of them?	*/
 	IFLA_INET6_CACHEINFO,	/* time values and max reasm size */
 	IFLA_INET6_ICMP6STATS,	/* statistics (icmpv6)		*/
+	IFLA_INET6_TOKEN,	/* device token			*/
 	__IFLA_INET6_MAX
 };
 
 #define IFLA_INET6_MAX	(__IFLA_INET6_MAX - 1)
+
+enum {
+	BRIDGE_MODE_UNSPEC,
+	BRIDGE_MODE_HAIRPIN,
+};
+
+enum {
+	IFLA_BRPORT_UNSPEC,
+	IFLA_BRPORT_STATE,	/* Spanning tree state     */
+	IFLA_BRPORT_PRIORITY,	/* "             priority  */
+	IFLA_BRPORT_COST,	/* "             cost      */
+	IFLA_BRPORT_MODE,	/* mode (hairpin)          */
+	IFLA_BRPORT_GUARD,	/* bpdu guard              */
+	IFLA_BRPORT_PROTECT,	/* root port protection    */
+	IFLA_BRPORT_FAST_LEAVE,	/* multicast fast leave    */
+	IFLA_BRPORT_LEARNING,	/* mac learning */
+	IFLA_BRPORT_UNICAST_FLOOD, /* flood unicast traffic */
+	__IFLA_BRPORT_MAX
+};
+#define IFLA_BRPORT_MAX (__IFLA_BRPORT_MAX - 1)
 
 struct ifla_cacheinfo {
 	__u32	max_reasm_len;
@@ -221,6 +251,7 @@ enum {
 	IFLA_VLAN_FLAGS,
 	IFLA_VLAN_EGRESS_QOS,
 	IFLA_VLAN_INGRESS_QOS,
+	IFLA_VLAN_PROTOCOL,
 	__IFLA_VLAN_MAX,
 };
 
@@ -248,6 +279,7 @@ struct ifla_vlan_qos_mapping {
 enum {
 	IFLA_MACVLAN_UNSPEC,
 	IFLA_MACVLAN_MODE,
+	IFLA_MACVLAN_FLAGS,
 	__IFLA_MACVLAN_MAX,
 };
 
@@ -259,6 +291,48 @@ enum macvlan_mode {
 	MACVLAN_MODE_BRIDGE  = 4, /* talk to bridge ports directly */
 	MACVLAN_MODE_PASSTHRU = 8,/* take over the underlying device */
 };
+
+#define MACVLAN_FLAG_NOPROMISC	1
+
+/* VXLAN section */
+enum {
+	IFLA_VXLAN_UNSPEC,
+	IFLA_VXLAN_ID,
+	IFLA_VXLAN_GROUP,	/* group or remote address */
+	IFLA_VXLAN_LINK,
+	IFLA_VXLAN_LOCAL,
+	IFLA_VXLAN_TTL,
+	IFLA_VXLAN_TOS,
+	IFLA_VXLAN_LEARNING,
+	IFLA_VXLAN_AGEING,
+	IFLA_VXLAN_LIMIT,
+	IFLA_VXLAN_PORT_RANGE,	/* source port */
+	IFLA_VXLAN_PROXY,
+	IFLA_VXLAN_RSC,
+	IFLA_VXLAN_L2MISS,
+	IFLA_VXLAN_L3MISS,
+	IFLA_VXLAN_PORT,	/* destination port */
+	IFLA_VXLAN_GROUP6,
+	IFLA_VXLAN_LOCAL6,
+	__IFLA_VXLAN_MAX
+};
+#define IFLA_VXLAN_MAX	(__IFLA_VXLAN_MAX - 1)
+
+struct ifla_vxlan_port_range {
+	__be16	low;
+	__be16	high;
+};
+
+/* Bonding section */
+
+enum {
+	IFLA_BOND_UNSPEC,
+	IFLA_BOND_MODE,
+	IFLA_BOND_ACTIVE_SLAVE,
+	__IFLA_BOND_MAX,
+};
+
+#define IFLA_BOND_MAX	(__IFLA_BOND_MAX - 1)
 
 /* SR-IOV virtual function management section */
 
@@ -275,6 +349,8 @@ enum {
 	IFLA_VF_MAC,		/* Hardware queue specific attributes */
 	IFLA_VF_VLAN,
 	IFLA_VF_TX_RATE,	/* TX Bandwidth Allocation */
+	IFLA_VF_SPOOFCHK,	/* Spoof Checking on/off switch */
+	IFLA_VF_LINK_STATE,	/* link state enable/disable/auto switch */
 	__IFLA_VF_MAX,
 };
 
@@ -296,12 +372,21 @@ struct ifla_vf_tx_rate {
 	__u32 rate; /* Max TX bandwidth in Mbps, 0 disables throttling */
 };
 
-struct ifla_vf_info {
+struct ifla_vf_spoofchk {
 	__u32 vf;
-	__u8 mac[32];
-	__u32 vlan;
-	__u32 qos;
-	__u32 tx_rate;
+	__u32 setting;
+};
+
+enum {
+	IFLA_VF_LINK_STATE_AUTO,	/* link state of the uplink */
+	IFLA_VF_LINK_STATE_ENABLE,	/* link always up */
+	IFLA_VF_LINK_STATE_DISABLE,	/* link always down */
+	__IFLA_VF_LINK_STATE_MAX,
+};
+
+struct ifla_vf_link_state {
+	__u32 vf;
+	__u32 link_state;
 };
 
 /* VF ports management section
@@ -375,5 +460,38 @@ struct ifla_port_vsi {
 	__u8 vsi_type_version;
 	__u8 pad[3];
 };
+
+
+/* IPoIB section */
+
+enum {
+	IFLA_IPOIB_UNSPEC,
+	IFLA_IPOIB_PKEY,
+	IFLA_IPOIB_MODE,
+	IFLA_IPOIB_UMCAST,
+	__IFLA_IPOIB_MAX
+};
+
+enum {
+	IPOIB_MODE_DATAGRAM  = 0, /* using unreliable datagram QPs */
+	IPOIB_MODE_CONNECTED = 1, /* using connected QPs */
+};
+
+#define IFLA_IPOIB_MAX (__IFLA_IPOIB_MAX - 1)
+
+
+/* HSR section */
+
+enum {
+	IFLA_HSR_UNSPEC,
+	IFLA_HSR_SLAVE1,
+	IFLA_HSR_SLAVE2,
+	IFLA_HSR_MULTICAST_SPEC,	/* Last byte of supervision addr */
+	IFLA_HSR_SUPERVISION_ADDR,	/* Supervision frame multicast addr */
+	IFLA_HSR_SEQ_NR,
+	__IFLA_HSR_MAX,
+};
+
+#define IFLA_HSR_MAX (__IFLA_HSR_MAX - 1)
 
 #endif /* _LINUX_IF_LINK_H */

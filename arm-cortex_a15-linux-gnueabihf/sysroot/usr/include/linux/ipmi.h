@@ -59,15 +59,7 @@
  * if it becomes full and it is queried once a second to see if
  * anything is in it.  Incoming commands to the driver will get
  * delivered as commands.
- *
- * This driver provides two main interfaces: one for in-kernel
- * applications and another for userland applications.  The
- * capabilities are basically the same for both interface, although
- * the interfaces are somewhat different.  The stuff in the
- * #ifdef __KERNEL__ below is the in-kernel interface.  The userland
- * interface is defined later in the file.  */
-
-
+ */
 
 /*
  * This is an overlay for all the address types, so it's easy to
@@ -111,7 +103,7 @@ struct ipmi_ipmb_addr {
  * A LAN Address.  This is an address to/from a LAN interface bridged
  * by the BMC, not an address actually out on the LAN.
  *
- * A concious decision was made here to deviate slightly from the IPMI
+ * A conscious decision was made here to deviate slightly from the IPMI
  * spec.  We do not use rqSWID and rsSWID like it shows in the
  * message.  Instead, we use remote_SWID and local_SWID.  This means
  * that any message (a request or response) from another device will

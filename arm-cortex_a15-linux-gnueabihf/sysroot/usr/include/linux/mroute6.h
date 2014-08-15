@@ -26,6 +26,9 @@
 #define MRT6_ASSERT	(MRT6_BASE+7)	/* Activate PIM assert mode		*/
 #define MRT6_PIM	(MRT6_BASE+8)	/* enable PIM code			*/
 #define MRT6_TABLE	(MRT6_BASE+9)	/* Specify mroute table ID		*/
+#define MRT6_ADD_MFC_PROXY	(MRT6_BASE+10)	/* Add a (*,*|G) mfc entry	*/
+#define MRT6_DEL_MFC_PROXY	(MRT6_BASE+11)	/* Del a (*,*|G) mfc entry	*/
+#define MRT6_MAX	(MRT6_BASE+11)
 
 #define SIOCGETMIFCNT_IN6	SIOCPROTOPRIVATE	/* IP protocol privates */
 #define SIOCGETSGCNT_IN6	(SIOCPROTOPRIVATE+1)
@@ -43,7 +46,7 @@ typedef unsigned short mifi_t;
 typedef	__u32		if_mask;
 #define NIFBITS (sizeof(if_mask) * 8)        /* bits per mask */
 
-#if !defined(__KERNEL__) && !defined(DIV_ROUND_UP)
+#if !defined(DIV_ROUND_UP)
 #define	DIV_ROUND_UP(x,y)	(((x) + ((y) - 1)) / (y))
 #endif
 
@@ -117,7 +120,7 @@ struct sioc_mif_req6 {
  * Structure used to communicate from kernel to multicast router.
  * We'll overlay the structure onto an MLD header (not an IPv6 heder like igmpmsg{}
  * used for IPv4 implementation). This is because this structure will be passed via an
- * IPv6 raw socket, on wich an application will only receiver the payload i.e the data after
+ * IPv6 raw socket, on which an application will only receiver the payload i.e the data after
  * the IPv6 header and all the extension headers. (See section 3 of RFC 3542)
  */
 
@@ -132,4 +135,4 @@ struct mrt6msg {
 	struct in6_addr	im6_src, im6_dst;
 };
 
-#endif
+#endif /* __LINUX_MROUTE6_H */

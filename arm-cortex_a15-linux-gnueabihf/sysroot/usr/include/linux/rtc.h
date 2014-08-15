@@ -91,11 +91,17 @@ struct rtc_pll_info {
 #define RTC_PLL_GET	_IOR('p', 0x11, struct rtc_pll_info)  /* Get PLL correction */
 #define RTC_PLL_SET	_IOW('p', 0x12, struct rtc_pll_info)  /* Set PLL correction */
 
+#define RTC_VL_READ	_IOR('p', 0x13, int)	/* Voltage low detector */
+#define RTC_VL_CLR	_IO('p', 0x14)		/* Clear voltage low information */
+
 /* interrupt flags */
-#define RTC_IRQF 0x80 /* any of the following is active */
-#define RTC_PF 0x40
-#define RTC_AF 0x20
-#define RTC_UF 0x10
+#define RTC_IRQF 0x80	/* Any of the following is active */
+#define RTC_PF 0x40	/* Periodic interrupt */
+#define RTC_AF 0x20	/* Alarm interrupt */
+#define RTC_UF 0x10	/* Update interrupt for 1Hz RTC */
+
+
+#define RTC_MAX_FREQ	8192
 
 
 #endif /* _LINUX_RTC_H_ */
