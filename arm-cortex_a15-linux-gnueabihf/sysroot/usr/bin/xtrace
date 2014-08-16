@@ -60,7 +60,7 @@ short options.
 }
 
 do_version() {
-  echo 'xtrace (crosstool-NG Boostedtc - 20140815) 2.19-2014.07'
+  echo 'xtrace (crosstool-NG Boostedtc - 20140816) 2.19-2014.07'
   printf $"Copyright (C) %s Free Software Foundation, Inc.
 This is free software; see the source for copying conditions.  There is NO
 warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
