@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PKGVERSION="(crosstool-NG hg+default-069f43a215cc - boostedtc) "
+PKGVERSION="(crosstool-NG Boostedtc - 20140815) "
 TZVERSION="2.19-2014.07"
 REPORT_BUGS_TO="<http://www.eglibc.org/issues/>"
 

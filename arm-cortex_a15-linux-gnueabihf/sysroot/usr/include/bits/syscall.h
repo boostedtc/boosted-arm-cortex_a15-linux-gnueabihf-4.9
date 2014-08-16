@@ -218,6 +218,7 @@
 #define SYS_removexattr __NR_removexattr
 #define SYS_rename __NR_rename
 #define SYS_renameat __NR_renameat
+#define SYS_renameat2 __NR_renameat2
 #define SYS_request_key __NR_request_key
 #define SYS_restart_syscall __NR_restart_syscall
 #define SYS_rmdir __NR_rmdir
@@ -232,10 +233,12 @@
 #define SYS_sched_get_priority_max __NR_sched_get_priority_max
 #define SYS_sched_get_priority_min __NR_sched_get_priority_min
 #define SYS_sched_getaffinity __NR_sched_getaffinity
+#define SYS_sched_getattr __NR_sched_getattr
 #define SYS_sched_getparam __NR_sched_getparam
 #define SYS_sched_getscheduler __NR_sched_getscheduler
 #define SYS_sched_rr_get_interval __NR_sched_rr_get_interval
 #define SYS_sched_setaffinity __NR_sched_setaffinity
+#define SYS_sched_setattr __NR_sched_setattr
 #define SYS_sched_setparam __NR_sched_setparam
 #define SYS_sched_setscheduler __NR_sched_setscheduler
 #define SYS_sched_yield __NR_sched_yield
@@ -558,6 +561,7 @@
 #define SYS_removexattr __NR_removexattr
 #define SYS_rename __NR_rename
 #define SYS_renameat __NR_renameat
+#define SYS_renameat2 __NR_renameat2
 #define SYS_request_key __NR_request_key
 #define SYS_restart_syscall __NR_restart_syscall
 #define SYS_rmdir __NR_rmdir
@@ -572,10 +576,12 @@
 #define SYS_sched_get_priority_max __NR_sched_get_priority_max
 #define SYS_sched_get_priority_min __NR_sched_get_priority_min
 #define SYS_sched_getaffinity __NR_sched_getaffinity
+#define SYS_sched_getattr __NR_sched_getattr
 #define SYS_sched_getparam __NR_sched_getparam
 #define SYS_sched_getscheduler __NR_sched_getscheduler
 #define SYS_sched_rr_get_interval __NR_sched_rr_get_interval
 #define SYS_sched_setaffinity __NR_sched_setaffinity
+#define SYS_sched_setattr __NR_sched_setattr
 #define SYS_sched_setparam __NR_sched_setparam
 #define SYS_sched_setscheduler __NR_sched_setscheduler
 #define SYS_sched_yield __NR_sched_yield

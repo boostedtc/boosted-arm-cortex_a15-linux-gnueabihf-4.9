@@ -2,7 +2,7 @@
 
 # NON-CONFIGURABLE STUFF!
 export LC_ALL=C
-version="hg+default-069f43a215cc"
+version="Boostedtc"
 bits="32"
 sed="${SED:-/usr/bin/sed}"
 grep="${GREP:-/usr/bin/grep}"
