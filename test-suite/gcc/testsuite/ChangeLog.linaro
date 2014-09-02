@@ -1,3 +1,114 @@
+2014-08-26  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r213701.
+	2014-08-07  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.dg/pr61756.c: Remove arm-specific dg-options.
+
+2014-08-26  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r213488, r213489.
+	2014-08-01  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.target/aarch64/legitimize_stack_var_before_reload_1.c: New
+	testcase.
+
+2014-08-22  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r212927.
+	2014-07-23  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.dg/ira-shrinkwrap-prep-1.c (target): Add arm_nothumb.
+	* gcc.dg/ira-shrinkwrap-prep-2.c (target): Likewise.
+	* gcc.dg/pr10474.c (target): Likewise.
+
+2014-08-14  Yvan Roux  <yvan.roux@linaro.org>
+
+	GCC Linaro 4.9-2014.08 released.
+
+2014-08-11 Yvan Roux  <yvan.roux@linaro.org>
+	Backport from trunk r213555.
+	2014-08-04  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	PR target/61713
+	* gcc.dg/pr61756.c: New test.
+
+2014-08-11 Yvan Roux  <yvan.roux@linaro.org>
+	Backport from trunk r213376.
+	2014-07-31  Charles Baylis  <charles.baylis@linaro.org>
+
+	PR target/61948
+	* gcc.target/arm/pr61948.c: New test case.
+
+2014-08-11 Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r212959, r212976, r212999, r213000.
+	2014-07-24  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.target/aarch64/test_frame_1.c: Match optimized instruction
+	sequences.
+	* gcc.target/aarch64/test_frame_2.c: Likewise.
+	* gcc.target/aarch64/test_frame_4.c: Likewise.
+	* gcc.target/aarch64/test_frame_6.c: Likewise.
+	* gcc.target/aarch64/test_frame_7.c: Likewise.
+	* gcc.target/aarch64/test_frame_8.c: Likewise.
+	* gcc.target/aarch64/test_frame_10.c: Likewise.
+
+	2014-07-24  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.target/aarch64/test_frame_1.c: Match optimized instruction
+	sequences.
+	* gcc.target/aarch64/test_frame_10.c: Likewise.
+	* gcc.target/aarch64/test_frame_2.c: Likewise.
+	* gcc.target/aarch64/test_frame_4.c: Likewise.
+	* gcc.target/aarch64/test_frame_6.c: Likewise.
+	* gcc.target/aarch64/test_frame_7.c: Likewise.
+	* gcc.target/aarch64/test_frame_8.c: Likewise.
+	* gcc.target/aarch64/test_fp_attribute_1.c: Likewise.
+
+	2014-07-24  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.target/aarch64/test_frame_12.c: Match optimized instruction
+	sequences.
+
+	2014-07-23  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.target/aarch64/test_frame_common.h: New file.
+	* gcc.target/aarch64/test_frame_1.c: Likewise.
+	* gcc.target/aarch64/test_frame_2.c: Likewise.
+	* gcc.target/aarch64/test_frame_3.c: Likewise.
+	* gcc.target/aarch64/test_frame_4.c: Likewise.
+	* gcc.target/aarch64/test_frame_5.c: Likewise.
+	* gcc.target/aarch64/test_frame_6.c: Likewise.
+	* gcc.target/aarch64/test_frame_7.c: Likewise.
+	* gcc.target/aarch64/test_frame_8.c: Likewise.
+	* gcc.target/aarch64/test_frame_9.c: Likewise.
+	* gcc.target/aarch64/test_frame_10.c: Likewise.
+	* gcc.target/aarch64/test_frame_11.c: Likewise.
+	* gcc.target/aarch64/test_frame_12.c: Likewise.
+	* gcc.target/aarch64/test_frame_13.c: Likewise.
+	* gcc.target/aarch64/test_frame_14.c: Likewise.
+	* gcc.target/aarch64/test_frame_15.c: Likewise.
+
+2014-08-10 Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r212023, r212024.
+	2014-06-26  Vidya Praveen  <vidyapraveen@arm.com>
+
+	* gcc.dg/inline-22.c: Add bind_pic_locally.
+	* gcc.dg/inline_4.c: Ditto.
+	* gcc.dg/fail_always_inline.c: Ditto.
+	* g++.dg/ipa/devirt-25.C: Ditto.
+
+	2014-06-26  Vidya Praveen  <vidyapraveen@arm.com>
+
+	* lib/target-support.exp (bind_pic_locally): Save the flags to
+	'flags_to_postpone' instead of appending to 'flags'.
+	* lib/gcc.exp (gcc_target_compile): Append board_info's multilib_flags
+	with flags_to_postpone and revert after target_compile.
+	* lib/g++.exp (g++_target_compile): Ditto.
+	* lib/gfortran.exp (gfortran_target_compile): Ditto.
+
 2014-07-24  Yvan Roux  <yvan.roux@linaro.org>
 
 	GCC Linaro 4.9-2014.07-1 released.
