@@ -1,3 +1,114 @@
+2014-10-08  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r214825, r214826, r215085.
+	2014-09-09  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.target/arm/vect-lceilf_1.c: Make input and output arrays global
+	and 16-byte aligned.
+	* gcc.target/arm/vect-lfloorf_1.c: Likewise.
+	* gcc.target/arm/vect-lroundf_1.c: Likewise.
+	* gcc.target/arm/vect-rounding-btruncf.c: Likewise.
+	* gcc.target/arm/vect-rounding-ceilf.c: Likewise.
+	* gcc.target/arm/vect-rounding-floorf.c: Likewise.
+	* gcc.target/arm/vect-rounding-roundf.c: Likewise.
+
+	2014-09-02  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	PR target/62275
+	* gcc.target/arm/vect-lceilf_1.c: New test.
+	* gcc.target/arm/vect-lfloorf_1.c: Likewise.
+	* gcc.target/arm/vect-lroundf_1.c: Likewise.
+
+	2014-09-02  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	PR target/62275
+	* gcc.target/arm/lceil-vcvt_1.c: New test.
+	* gcc.target/arm/lfloor-vcvt_1.c: Likewise.
+	* gcc.target/arm/lround-vcvt_1.c: Likewise.
+
+2014-10-06  Venkataramanan Kumar  <venkataramanan.kumar@linaro.org>
+
+	Backport from trunk r214943.
+	2014-09-05  Alan Lawrence  <alan.lawrence@arm.com>
+
+	* gcc.target/aarch64/simd/vrbit_1.c: New test.
+
+2014-10-06  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r215385.
+	2014-09-19  James Greenhalgh  <james.greenhalgh@arm.com>
+
+	* gcc.dg/ssp-3.c: New.
+	* gcc.dg/ssp-4.c: Likewise.
+
+2014-10-06  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r215136.
+	2014-09-10  Xinliang David Li  <davidxl@google.com>
+
+	PR target/63209
+	* gcc.c-torture/execute/pr63209.c: New test.
+
+2014-10-06  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r215067.
+	2014-09-09  Jiong Wang  <jiong.wang@arm.com>
+
+	* gcc.target/arm/vect-copysignf.c: New testcase.
+
+2014-10-03  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r215050, r215051, r215052, r215053, r215054.
+	2014-09-09  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.target/arm/vfp-1.c: Updated expected assembly.
+
+	2014-09-09  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.target/arm/vfp-1.c: Updated expected assembly.
+
+	2014-09-09  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.target/arm/vfp-1.c: Updated expected assembly.
+
+	2014-09-09  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.target/arm/vfp-1.c: Updated expected assembly.
+
+	2014-09-09  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
+
+	* gcc.target/arm/pr51835.c: Update expected assembly.
+	* gcc.target/arm/vfp-1.c: Likewise.
+	* gcc.target/arm/vfp-ldmdbd.c: Likewise.
+	* gcc.target/arm/vfp-ldmdbs.c: Likewise.
+	* gcc.target/arm/vfp-ldmiad.c: Likewise.
+	* gcc.target/arm/vfp-ldmias.c: Likewise.
+	* gcc.target/arm/vfp-stmdbd.c: Likewise.
+	* gcc.target/arm/vfp-stmdbs.c: Likewise.
+	* gcc.target/arm/vfp-stmiad.c: Likewise.
+	* gcc.target/arm/vfp-stmias.c: Likewise.
+
+2014-09-10  Yvan Roux  <yvan.roux@linaro.org>
+
+	GCC Linaro 4.9-2014.09 released.
+
+2014-09-03  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r214526.
+	2014-08-26  Joseph Myers  <joseph@codesourcery.com>
+
+	PR target/60606
+	PR target/61330
+	* gcc.dg/torture/pr60606-1.c, gcc.target/arm/pr60606-2.c,
+	gcc.target/arm/pr60606-3.c, gcc.target/arm/pr60606-4.c: New tests.
+
+2014-09-03  Yvan Roux  <yvan.roux@linaro.org>
+
+	Backport from trunk r213659.
+	2014-08-06  Alan Lawrence  <alan.lawrence@arm.com>
+
+	* gcc.target/aarch64/vdup_n_2.c: New test.
+
 2014-08-26  Yvan Roux  <yvan.roux@linaro.org>
 
 	Backport from trunk r213701.
@@ -26,21 +137,23 @@
 
 	GCC Linaro 4.9-2014.08 released.
 
-2014-08-11 Yvan Roux  <yvan.roux@linaro.org>
+2014-08-11  Yvan Roux  <yvan.roux@linaro.org>
+
 	Backport from trunk r213555.
 	2014-08-04  Kyrylo Tkachov  <kyrylo.tkachov@arm.com>
 
 	PR target/61713
 	* gcc.dg/pr61756.c: New test.
 
-2014-08-11 Yvan Roux  <yvan.roux@linaro.org>
+2014-08-11  Yvan Roux  <yvan.roux@linaro.org>
+
 	Backport from trunk r213376.
 	2014-07-31  Charles Baylis  <charles.baylis@linaro.org>
 
 	PR target/61948
 	* gcc.target/arm/pr61948.c: New test case.
 
-2014-08-11 Yvan Roux  <yvan.roux@linaro.org>
+2014-08-11  Yvan Roux  <yvan.roux@linaro.org>
 
 	Backport from trunk r212959, r212976, r212999, r213000.
 	2014-07-24  Jiong Wang  <jiong.wang@arm.com>
@@ -90,7 +203,7 @@
 	* gcc.target/aarch64/test_frame_14.c: Likewise.
 	* gcc.target/aarch64/test_frame_15.c: Likewise.
 
-2014-08-10 Yvan Roux  <yvan.roux@linaro.org>
+2014-08-10  Yvan Roux  <yvan.roux@linaro.org>
 
 	Backport from trunk r212023, r212024.
 	2014-06-26  Vidya Praveen  <vidyapraveen@arm.com>

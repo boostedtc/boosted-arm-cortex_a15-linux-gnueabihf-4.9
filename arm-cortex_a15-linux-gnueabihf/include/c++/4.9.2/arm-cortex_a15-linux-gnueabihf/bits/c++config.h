@@ -31,7 +31,7 @@
 #define _GLIBCXX_CXX_CONFIG_H 1
 
 // The current version of the C++ library in compressed ISO date format.
-#define __GLIBCXX__ 20140811
+#define __GLIBCXX__ 20141008
 
 // Macros for various attributes.
 //   _GLIBCXX_PURE
@@ -705,7 +705,7 @@ namespace std
 #define _GLIBCXX_HAVE_LDEXPL 1
 
 /* Define to 1 if you have the <libintl.h> header file. */
-#define _GLIBCXX_HAVE_LIBINTL_H 1
+/* #undef _GLIBCXX_HAVE_LIBINTL_H */
 
 /* Only used in build directory testsuite_hooks.h. */
 /* #undef _GLIBCXX_HAVE_LIMIT_AS */
@@ -1315,7 +1315,7 @@ namespace std
 #define _GLIBCXX_USE_NANOSLEEP 1
 
 /* Define if NLS translations are to be used. */
-#define _GLIBCXX_USE_NLS 1
+/* #undef _GLIBCXX_USE_NLS */
 
 /* Define if pthreads_num_processors_np is available in <pthread.h>. */
 /* #undef _GLIBCXX_USE_PTHREADS_NUM_PROCESSORS_NP */

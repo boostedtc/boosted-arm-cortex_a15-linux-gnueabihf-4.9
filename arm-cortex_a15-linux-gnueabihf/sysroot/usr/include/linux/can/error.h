@@ -41,8 +41,8 @@
  * DAMAGE.
  */
 
-#ifndef _CAN_ERROR_H
-#define _CAN_ERROR_H
+#ifndef CAN_ERROR_H
+#define CAN_ERROR_H
 
 #define CAN_ERR_DLC 8 /* dlc for error message frames */
 
@@ -120,4 +120,4 @@
 
 /* controller specific additional information / data[5..7] */
 
-#endif /* _CAN_ERROR_H */
+#endif /* CAN_ERROR_H */

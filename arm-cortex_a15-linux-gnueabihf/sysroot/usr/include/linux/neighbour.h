@@ -24,7 +24,6 @@ enum {
 	NDA_PORT,
 	NDA_VNI,
 	NDA_IFINDEX,
-	NDA_MASTER,
 	__NDA_MAX
 };
 
