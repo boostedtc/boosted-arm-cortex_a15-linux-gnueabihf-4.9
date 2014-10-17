@@ -129,7 +129,7 @@
 /* Define to 1 if translation of program messages to the user's native
    language is requested. */
 #ifndef USED_FOR_TARGET
-/* #undef ENABLE_NLS */
+#define ENABLE_NLS 1
 #endif
 
 
@@ -1367,7 +1367,7 @@
 
 /* Define to the level of your linker's plugin support. */
 #ifndef USED_FOR_TARGET
-#define HAVE_LTO_PLUGIN 0
+#define HAVE_LTO_PLUGIN 2
 #endif
 
 

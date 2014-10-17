@@ -1,5 +1,5 @@
 /* Generated automatically by the program 'build/genpreds'
-   from the machine description file '/home/hieu/fngbuild/.build/src/gcc-custom/gcc/config/arm/arm.md'.  */
+   from the machine description file '/home/hieu/bng/.build/src/gcc-custom/gcc/config/arm/arm.md'.  */
 
 #ifndef GCC_TM_PREDS_H
 #define GCC_TM_PREDS_H
